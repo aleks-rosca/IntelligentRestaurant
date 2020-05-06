@@ -136,7 +136,9 @@
         <Content Include="Pictures\Food.jpg" />
         <Content Include="Pictures\Meat.jpg" />
         <Content Include="Pictures\Snacks.jpg" />
+        <Content Include="Pictures\SoftDrink.jpg" />
         <Content Include="Pictures\Soup.jpg" />
+        <Content Include="Pictures\StrongDrink.jpg" />
         <Content Include="Scripts\bootstrap.js" />
         <Content Include="Scripts\bootstrap.min.js" />
         <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -154,7 +156,9 @@
         <Content Include="Views\Home\Food.cshtml" />
         <Content Include="Views\Home\Meat.cshtml" />
         <Content Include="Views\Home\Snacks.cshtml" />
+        <Content Include="Views\Home\SoftDrink.cshtml" />
         <Content Include="Views\Home\Soup.cshtml" />
+        <Content Include="Views\Home\StrongDrink.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">
             <DependentUpon>Web.config</DependentUpon>

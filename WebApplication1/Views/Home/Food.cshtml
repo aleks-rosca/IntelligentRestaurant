@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "Food";
 }
-
 <div class="four-images">
     <div class="cell">
         <a href="@Url.Action("Meat", "Home")">
@@ -9,33 +8,49 @@
             <div class="text"> Meat </div>
         </a>
     </div>
-    
+
     <div class="cell">
         <a href="@Url.Action("Snacks", "Home")">
             <img src="~/Pictures/Snacks.jpg" alt="Food" style="width:100%"/>
             <div class="text"> Snacks </div>
         </a>
     </div>
-    
+
     <div class="cell">
         <a href="@Url.Action("Soup", "Home")">
             <img src="~/Pictures/Soup.jpg" alt="Food" style="width:100%"/>
             <div class="text"> Soup </div>
         </a>
     </div>
-    
+
     <div class="cell">
         <a href="@Url.Action("Dessert", "Home")">
             <img src="~/Pictures/Dessert.jpg" alt="Food" style="width:100%"/>
             <div class="text"> Dessert </div>
         </a>
     </div>
-
+</div>
+<div class="button">
+    <a href="@Url.Action("Index", "Home")">
+        <button type="button"> Go back </button>
+    </a>
 </div>
 
 <style>
 .four-images{
 column-count: 2;
+}
+.button{
+float: right;
+padding: 5px;
+border: none;
+background-color: inherit;
+font-size: 20px;
+cursor:pointer;
+display: inline-block;
+}
+.button:hover{
+color: deepskyblue;
 }
  /* Picture alignment */
 .cell{

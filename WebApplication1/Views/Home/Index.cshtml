@@ -12,23 +12,47 @@
         <a href="@Url.Action("Food", "Home")">
             <img src="~/Pictures/Food.jpg" alt="Food" style="width:100%"/>
             <div class="text"> Food </div>
-         </a>
+        </a>
+    </div>
+</div>
+
+<div class="allButtons">
+    <div class="button">
+        <button type="button"> Call for help </button>
+        <button type="button"> Pay for order </button>
     </div>
 </div>
 
 <style>
+.four-images{
+column-count: 2;
+}
+.button{
+display: flex;
+justify-content: center;
+padding: 5px;
+border: none;
+background-color: inherit;
+font-size: 20px;
+cursor:pointer;
+}
+.button:hover{
+color: deepskyblue;
+}
  /* Picture alignment */
 .cell{
-    width:50%;
-    height: 50%;
-    display:inline-block;
-    position:relative;
-    transition:.3s;
-    padding:5px;
-    float:left;
-    cursor: pointer;
-    border-radius: 5px;
-  }
+    width:100%;
+        height: 70%;
+        display:inline-block;
+        position:relative;
+        transition:.3s;
+        padding:2px;
+        cursor: pointer;
+        border-radius: 5px;
+        column-gap: 0;
+        overflow: hidden;
+float: left
+          }
   /* Text alignment */
  .cell .text{
         position: absolute;

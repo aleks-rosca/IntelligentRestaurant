@@ -43,5 +43,15 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
+        public ActionResult SoftDrink()
+        {
+            return View();
+        }
+
+        public ActionResult StrongDrink()
+        {
+            return View();
+        }
     }
 }
