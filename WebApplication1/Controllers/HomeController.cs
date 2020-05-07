@@ -1,57 +1,191 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly string baseUrl = "http://localhost:8080/api/";
+
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult Food()
         {
-            
             return View();
         }
 
         public ActionResult Drinks()
         {
-            
             return View();
         }
 
         public ActionResult Meat()
         {
-            return View();
+            IEnumerable<Item> items = new List<Item>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var responseTask = client.GetAsync("item/byType/meat");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsStringAsync().Result;
+                    items = JsonConvert.DeserializeObject<IEnumerable<Item>>(readTask);
+                }
+
+                return View(items);
+            }
         }
 
         public ActionResult Soup()
         {
-            return View();
+            IEnumerable<Item> items = new List<Item>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var responseTask = client.GetAsync("item/byType/soup");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsStringAsync().Result;
+                    items = JsonConvert.DeserializeObject<IEnumerable<Item>>(readTask);
+                }
+
+                return View(items);
+            }
         }
 
         public ActionResult Snacks()
         {
-            return View();
+            IEnumerable<Item> items = new List<Item>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var responseTask = client.GetAsync("item/byType/snacks");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsStringAsync().Result;
+                    items = JsonConvert.DeserializeObject<IEnumerable<Item>>(readTask);
+                }
+
+                return View(items);
+            }
         }
 
         public ActionResult Dessert()
         {
-            return View();
+            IEnumerable<Item> items = new List<Item>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var responseTask = client.GetAsync("item/byType/dessert");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsStringAsync().Result;
+                    items = JsonConvert.DeserializeObject<IEnumerable<Item>>(readTask);
+                }
+
+                return View(items);
+            }
         }
 
         public ActionResult SoftDrink()
         {
-            return View();
+            IEnumerable<Item> items = new List<Item>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var responseTask = client.GetAsync("item/byType/sdrink");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsStringAsync().Result;
+                    items = JsonConvert.DeserializeObject<IEnumerable<Item>>(readTask);
+                }
+
+                return View(items);
+            }
         }
 
         public ActionResult StrongDrink()
         {
-            return View();
+            IEnumerable<Item> items = new List<Item>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var responseTask = client.GetAsync("item/byType/stdrink");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsStringAsync().Result;
+                    items = JsonConvert.DeserializeObject<IEnumerable<Item>>(readTask);
+                }
+
+                return View(items);
+            }
+        }
+
+        public ActionResult GetItems()
+        {
+            IEnumerable<Item> items = new List<Item>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var responseTask = client.GetAsync("item/byType/snacks");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsStringAsync().Result;
+                    items = JsonConvert.DeserializeObject<IEnumerable<Item>>(readTask);
+                }
+
+                return View(items);
+            }
         }
     }
 }
