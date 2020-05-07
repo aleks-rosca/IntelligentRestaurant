@@ -22,6 +22,12 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Drinks", "Drinks", "Home")</li>
                 <li>@Html.ActionLink("Food", "Food", "Home")</li>
+                <il class="nav navbar-nav">
+                    <li class="active">
+                    <a href="@Url.Action("Myorder", "AddToCart")" class="btn btn-info btn-lg">
+                        <span class="glyphicon glyphicon-shopping-cart" style="color:green"></span>Cart <span class="badge">@Session["count"]</span>
+                    </a>
+                </il>
             </ul>
         </div>
     </div>
@@ -32,6 +38,6 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+@RenderSection("scripts", false)
 </body>
 </html>

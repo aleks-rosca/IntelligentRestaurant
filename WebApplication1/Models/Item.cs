@@ -15,7 +15,7 @@ namespace WebApplication1.Models
 
         [JsonProperty("itemDesc")] public string Description { get; set; }
 
-        [JsonProperty("itemPrice")] public string Price { get; set; }
+        [JsonProperty("itemPrice")] public decimal Price { get; set; }
 
         [JsonProperty("itemType")] public string Type { get; set; }
     }

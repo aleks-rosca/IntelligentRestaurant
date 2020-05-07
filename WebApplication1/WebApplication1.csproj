@@ -116,6 +116,7 @@
         <Compile Include="App_Start\BundleConfig.cs" />
         <Compile Include="App_Start\FilterConfig.cs" />
         <Compile Include="App_Start\RouteConfig.cs" />
+        <Compile Include="Controllers\AddToCartController.cs" />
         <Compile Include="Controllers\HomeController.cs" />
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
@@ -132,6 +133,7 @@
         <Content Include="fonts\glyphicons-halflings-regular.svg" />
         <Content Include="Global.asax" />
         <Content Include="Content\Site.css" />
+        <Content Include="Icons\delete.png" />
         <Content Include="Pictures\Dessert.jpg" />
         <Content Include="Pictures\Drinks.jpg" />
         <Content Include="Pictures\Food.jpg" />
@@ -153,6 +155,7 @@
         <Content Include="Scripts\jquery.validate.unobtrusive.js" />
         <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
         <Content Include="Scripts\modernizr-2.8.3.js" />
+        <Content Include="Views\AddToCart\Myorder.cshtml" />
         <Content Include="Views\Home\Dessert.cshtml" />
         <Content Include="Views\Home\Food.cshtml" />
         <Content Include="Views\Home\GetItems.cshtml" />
