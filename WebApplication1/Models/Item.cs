@@ -9,6 +9,7 @@ namespace WebApplication1.Models
         {
         }
         
+        public int Quantity { get; set; }
         [JsonProperty("itemId")] public string Id { get; set; }
 
         [JsonProperty("itemName")] public string ItemName { get; set; }

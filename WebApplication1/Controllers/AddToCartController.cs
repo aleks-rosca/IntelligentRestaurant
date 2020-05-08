@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
                 var li = new List<Item> {item};
 
                 Session["cart"] = li;
-                ViewBag.cart = li.Count;
+                ViewBag.cart = li.Count + 1;
                 Session["count"] = 1;
             }
             else
@@ -24,11 +24,19 @@ namespace WebApplication1.Controllers
                 Session["cart"] = li;
                 ViewBag.cart = li.Count;
                 Session["count"] = Convert.ToInt32(Session["count"]) + 1;
+                
             }
 
             return RedirectToAction("Index", "Home");
         }
-
+        private int isExist(Item item)
+        {
+            List<Item> cart = (List<Item>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].ItemName.Equals(item))
+                    return i;
+            return -1;
+        }
         public ActionResult Myorder()
         {
             return View((List<Item>) Session["cart"]);
