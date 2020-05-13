@@ -18,7 +18,6 @@ namespace WebApplication1.Controllers
             if (Session["cart"] == null)
             {
                 var li = new List<Item> {item};
-
                 Session["cart"] = li;
                 ViewBag.cart = li.Count + 1;
                 Session["count"] = 1;
