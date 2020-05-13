@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class AddToCartController : Controller
     {
+        private readonly string baseUrl = "http://localhost:8080/api/";
+
         public ActionResult Add(Item item)
         {
             if (Session["cart"] == null)
@@ -19,6 +25,7 @@ namespace WebApplication1.Controllers
             }
             else
             {
+
                 var li = (List<Item>) Session["cart"];
                 li.Add(item);
                 Session["cart"] = li;

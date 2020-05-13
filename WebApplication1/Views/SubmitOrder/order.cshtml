@@ -1,0 +1,17 @@
+﻿@using WebApplication1.Models
+@model IEnumerable<WebApplication1.Models.ItemOrder>
+
+
+<title>Are you sure?</title>
+
+@foreach (var it in Model)
+{
+    <td>@it.itemID</td>
+    <td>dkk @it.price</td>
+    <td>@it.tableNO</td>
+    <button id="btn_yes" class="label label-primary" data-slno="@it.itemID" onclick="location.href='@Url.Action("order", "SubmitOrder", it)'"/>
+
+    }
+
+        
+
