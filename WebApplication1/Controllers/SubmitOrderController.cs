@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace WebApplication1.Controllers
                 var jsonString = JsonConvert.SerializeObject(itemOrder);
                 var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 await client.PostAsync("ordereditems", content);
+                
+                 
             }
             return RedirectToAction("Myorder");
         }
