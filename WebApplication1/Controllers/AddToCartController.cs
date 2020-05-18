@@ -13,12 +13,16 @@ namespace WebApplication1.Controllers
     {
         private readonly string baseUrl = "http://localhost:8080/api/";
 
-        public ActionResult Add(Item item)
+        public ActionResult Add(Item item, ItemOrder itemOrder)
         {
             if (Session["cart"] == null)
             {
                 var li = new List<Item> {item};
+                var io = new List<ItemOrder> {itemOrder};
                 Session["cart"] = li;
+                itemOrder.itemID = item.Id;
+                itemOrder.price = item.Price;
+                itemOrder.tableNO = "1";
                 ViewBag.cart = li.Count + 1;
                 Session["count"] = 1;
             }
@@ -26,6 +30,10 @@ namespace WebApplication1.Controllers
             {
 
                 var li = (List<Item>) Session["cart"];
+                var io = (List<ItemOrder>) Session["cart"];
+                itemOrder.itemID = item.Id;
+                itemOrder.price = item.Price;
+                itemOrder.tableNO = "1";
                 li.Add(item);
                 Session["cart"] = li;
                 ViewBag.cart = li.Count;

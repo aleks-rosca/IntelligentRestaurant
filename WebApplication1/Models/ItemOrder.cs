@@ -10,13 +10,13 @@ namespace WebApplication1.Models
         {
         }
 
-        [JsonProperty("itemID")] public long itemID { get; set; }
+        [JsonProperty("itemID")] public string itemID { get; set; }
 
         [JsonProperty("tableNO")] public String tableNO { get; set; }
         
         [JsonProperty("quantity")] public int quantity { get; set; }
         
-        [JsonProperty("price")] public double price { get; set; }
+        [JsonProperty("price")] public decimal price { get; set; }
         
         
     }
