@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -13,27 +14,21 @@ namespace WebApplication1.Controllers
     {
         private readonly string baseUrl = "http://localhost:8080/api/";
 
-        [HttpPost]
-        [ActionName("Myorder")]
-        public async Task<ActionResult> SubmitOrder(ItemOrder itemOrder)
+        [ActionName("order")]
+        public ActionResult SubmitOrder(ItemOrder itemOrder)
         {
+            IEnumerable<ItemOrder> itemOrders = new List<ItemOrder>();
+            
             using (var client = new HttpClient())
             {
-                Console.WriteLine("We got here maybe??");
-
                 client.BaseAddress = new Uri(baseUrl);
                 
                 var jsonString = JsonConvert.SerializeObject(itemOrder);
                 var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                await client.PutAsync("ordereditems", content);
+             //   client.SendAsync(new HttpRequestMessage(HttpMethod.Post, "ordereditems"));
+                client.PostAsync("ordereditems", content);
                 Console.WriteLine("We got here"+ content);
             }
-            return RedirectToAction("Myorder");
-        }
-
-        public ActionResult order()
-        {
-            return View(Session["out"]);
-        }
+            return View(Session["out"]);        }
     }
 }

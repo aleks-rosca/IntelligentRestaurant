@@ -24,6 +24,7 @@ namespace WebApplication1.Controllers
                 itemOrder.itemID = item.Id;
                 itemOrder.price = item.Price;
                 itemOrder.tableNO = "1";
+                itemOrder.quantity = li.Count;
                 ViewBag.cart = li.Count + 1;
                 Session["count"] = 1;
             }
@@ -35,6 +36,7 @@ namespace WebApplication1.Controllers
                 itemOrder.itemID = item.Id;
                 itemOrder.price = item.Price;
                 itemOrder.tableNO = "1";
+                itemOrder.quantity = li.Count;
                 io.Add(itemOrder);
                 li.Add(item);
                 Session["cart"] = li;
