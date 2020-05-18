@@ -19,20 +19,21 @@ namespace WebApplication1.Controllers
         {
             using (var client = new HttpClient())
             {
+                Console.WriteLine("We got here maybe??");
+
                 client.BaseAddress = new Uri(baseUrl);
                 
                 var jsonString = JsonConvert.SerializeObject(itemOrder);
                 var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                await client.PostAsync("ordereditems", content);
-                
-                 
+                await client.PutAsync("ordereditems", content);
+                Console.WriteLine("We got here"+ content);
             }
             return RedirectToAction("Myorder");
         }
 
         public ActionResult order()
         {
-            return View(Session["cart"]);
+            return View(Session["out"]);
         }
     }
 }

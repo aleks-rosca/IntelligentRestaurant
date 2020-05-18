@@ -20,6 +20,7 @@ namespace WebApplication1.Controllers
                 var li = new List<Item> {item};
                 var io = new List<ItemOrder> {itemOrder};
                 Session["cart"] = li;
+                Session["out"] = io;
                 itemOrder.itemID = item.Id;
                 itemOrder.price = item.Price;
                 itemOrder.tableNO = "1";
@@ -30,10 +31,11 @@ namespace WebApplication1.Controllers
             {
 
                 var li = (List<Item>) Session["cart"];
-                var io = (List<ItemOrder>) Session["cart"];
+                var io = (List<ItemOrder>) Session["out"];
                 itemOrder.itemID = item.Id;
                 itemOrder.price = item.Price;
                 itemOrder.tableNO = "1";
+                io.Add(itemOrder);
                 li.Add(item);
                 Session["cart"] = li;
                 ViewBag.cart = li.Count;
