@@ -28,6 +28,8 @@ namespace WebApplication1.Controllers
                 client.PostAsync("ordereditems", content);
                 Console.WriteLine("We got here"+ content);
             }
-            return View(Session["out"]);        }
+            return View(Session["out"]);
+            
+        }
     }
 }
