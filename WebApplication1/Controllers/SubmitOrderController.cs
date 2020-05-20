@@ -25,7 +25,6 @@ namespace WebApplication1.Controllers
                 
                 var jsonString = JsonConvert.SerializeObject(itemOrder);
                 var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-             //   client.SendAsync(new HttpRequestMessage(HttpMethod.Post, "ordereditems"));
                 client.PostAsync("ordereditems", content);
                 Console.WriteLine("We got here"+ content);
             }
