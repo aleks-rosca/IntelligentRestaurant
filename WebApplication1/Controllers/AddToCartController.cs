@@ -30,7 +30,6 @@ namespace WebApplication1.Controllers
             }
             else
             {
-
                 var li = (List<Item>) Session["cart"];
                 var io = (List<ItemOrder>) Session["out"];
                 itemOrder.itemID = item.Id;
@@ -42,19 +41,20 @@ namespace WebApplication1.Controllers
                 Session["cart"] = li;
                 ViewBag.cart = li.Count;
                 Session["count"] = Convert.ToInt32(Session["count"]) + 1;
-                
             }
 
             return RedirectToAction("Index", "Home");
         }
+
         private int isExist(Item item)
         {
-            List<Item> cart = (List<Item>)Session["cart"];
-            for (int i = 0; i < cart.Count; i++)
+            var cart = (List<Item>) Session["cart"];
+            for (var i = 0; i < cart.Count; i++)
                 if (cart[i].ItemName.Equals(item))
                     return i;
             return -1;
         }
+
         public ActionResult Myorder()
         {
             return View((List<Item>) Session["cart"]);
@@ -67,6 +67,26 @@ namespace WebApplication1.Controllers
             Session["cart"] = li;
             Session["count"] = Convert.ToInt32(Session["count"]) - 1;
             return RedirectToAction("Myorder", "AddToCart");
+        }
+
+        [HttpPost]
+        [ActionName("order")]
+        public async Task<ActionResult> MakeOrder(ItemOrder itemOrder)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                Console.WriteLine("Before sending ");
+
+                var jsonString = JsonConvert.SerializeObject(itemOrder);
+                var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                await client.PostAsync("ordereditems", content);
+                
+                Console.WriteLine("After Post "); 
+            }
+
+            return RedirectToAction("order");
+            
         }
     }
 }
