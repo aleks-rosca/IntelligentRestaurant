@@ -79,14 +79,25 @@ namespace WebApplication1.Controllers
                 Console.WriteLine("Before sending ");
 
                 var jsonString = JsonConvert.SerializeObject(itemOrder);
-                var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                await client.PostAsync("ordereditems", content);
-                
+                Console.WriteLine(jsonString);
+                using (var content = new StringContent(jsonString, Encoding.UTF8, "application/json"))
+                {
+                    var response= client.PostAsync("ordereditems", content);
+                }
+
                 Console.WriteLine("After Post "); 
             }
 
-            return RedirectToAction("order");
+            return RedirectToAction("Index","Home");
             
+        }
+
+        public ActionResult order()
+        {
+            ItemOrder test = new ItemOrder{itemID = "1",price = 100,quantity = 4,tableNO = "19"};
+
+           
+            return RedirectToAction("Index","Home",MakeOrder(test));
         }
     }
 }

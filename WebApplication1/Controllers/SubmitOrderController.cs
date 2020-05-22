@@ -24,14 +24,19 @@ namespace WebApplication1.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
-                
-                var jsonString = JsonConvert.SerializeObject(itemOrder);
+                ItemOrder test = new ItemOrder{itemID = "1",price = 100,quantity = 4,tableNO = "2"};
+                var jsonString = JsonConvert.SerializeObject(test);
                 var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 client.PostAsync("ordereditems", content);
                 Console.WriteLine("We got here"+ content);
             }
             return RedirectToAction("order");        
         }
-        
+        public ActionResult order(ItemOrder itemOrder)
+        {
+            Console.WriteLine(itemOrder.itemID);
+            return View();
+        }
     }
+    
 }
