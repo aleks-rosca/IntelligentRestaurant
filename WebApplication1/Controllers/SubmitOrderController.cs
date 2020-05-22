@@ -15,6 +15,7 @@ namespace WebApplication1.Controllers
         private readonly string baseUrl = "http://localhost:8080/api/";
 
         [ActionName("order")]
+        //[HttpPost]
         public ActionResult SubmitOrder(ItemOrder itemOrder)
         {
             IEnumerable<ItemOrder> itemOrders = new List<ItemOrder>();
@@ -28,8 +29,9 @@ namespace WebApplication1.Controllers
                 client.PostAsync("ordereditems", content);
                 Console.WriteLine("We got here"+ content);
             }
-            return View(Session["out"]);
-            
+
+            return RedirectToAction("order");
+
         }
     }
 }
