@@ -6,20 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using NuGet;
 using WebApplication1.Models;
+using HttpClient = System.Net.Http.HttpClient;
 
 namespace WebApplication1.Controllers
 {
     public class SubmitOrderController : Controller
     {
         private readonly string baseUrl = "http://localhost:8080/api/";
-
+        
+        [HttpPost]
         [ActionName("order")]
+
         //[HttpPost]
+
+     
+
         public ActionResult SubmitOrder(ItemOrder itemOrder)
         {
-            IEnumerable<ItemOrder> itemOrders = new List<ItemOrder>();
-            
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
@@ -30,8 +35,13 @@ namespace WebApplication1.Controllers
                 Console.WriteLine("We got here"+ content);
             }
 
+
             return RedirectToAction("order");
 
+
+            return RedirectToAction("order");        
+
         }
+        
     }
 }
