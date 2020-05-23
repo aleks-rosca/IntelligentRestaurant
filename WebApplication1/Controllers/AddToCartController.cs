@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +13,14 @@ namespace WebApplication1.Controllers
     public class AddToCartController : Controller
     {
         private readonly string baseUrl = "http://localhost:8080/api/";
-
+        private List<ItemOrder> io = new List<ItemOrder>();
         public ActionResult Add(Item item, ItemOrder itemOrder)
         {
+          
             if (Session["cart"] == null)
-            {
+            {     
                 var li = new List<Item> {item};
-                var io = new List<ItemOrder> {itemOrder};
+              
                 Session["cart"] = li;
                 Session["out"] = io;
                 itemOrder.itemID = item.Id;
@@ -27,23 +29,26 @@ namespace WebApplication1.Controllers
                 itemOrder.quantity = li.Count;
                 ViewBag.cart = li.Count + 1;
                 Session["count"] = 1;
+                io.Add(itemOrder);
             }
             else
             {
                 var li = (List<Item>) Session["cart"];
-                var io = (List<ItemOrder>) Session["out"];
+                io = (List<ItemOrder>) Session["out"];
                 itemOrder.itemID = item.Id;
                 itemOrder.price = item.Price;
                 itemOrder.tableNO = "1";
                 itemOrder.quantity = li.Count;
                 io.Add(itemOrder);
+                Console.WriteLine(io.Count);
                 li.Add(item);
                 Session["cart"] = li;
+                Session["out"] = io;
                 ViewBag.cart = li.Count;
                 Session["count"] = Convert.ToInt32(Session["count"]) + 1;
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home",io);
         }
 
         private int isExist(Item item)
@@ -71,33 +76,43 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [ActionName("order")]
-        public async Task<ActionResult> MakeOrder(ItemOrder itemOrder)
+        public async Task<ActionResult> MakeOrder()//should probably take a list of items instead of one
         {
             using (var client = new HttpClient())
             {
+                
+               
                 client.BaseAddress = new Uri(baseUrl);
+               // Console.Out.WriteLine("io = {0}", io);
                 Console.WriteLine("Before sending ");
-
-                var jsonString = JsonConvert.SerializeObject(itemOrder);
-                Console.WriteLine(jsonString);
-                using (var content = new StringContent(jsonString, Encoding.UTF8, "application/json"))
+                foreach (var jsonString in io.Select(itemOrder => JsonConvert.SerializeObject(itemOrder)))
                 {
-                    var response= client.PostAsync("ordereditems", content);
-                }
+                    Console.WriteLine(jsonString);
+                    using (var content = new StringContent(jsonString, Encoding.UTF8, "application/json"))
+                    {
+                        var response = client.PostAsync("ordereditems", content).Result;
+                    }
 
-                Console.WriteLine("After Post "); 
+                    Console.WriteLine("After Post ");
+                }
             }
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index","Home"); // Where should it go after the method it done
             
         }
 
-        public ActionResult order()
+        public ActionResult order()// this method make the page visible when we click order 
         {
-            ItemOrder test = new ItemOrder{itemID = "1",price = 100,quantity = 4,tableNO = "19"};
+           
+            //This needs to be replaced with a list of ordered items
+           // ItemOrder test = new ItemOrder{itemID = "1",price = 100,quantity = 4,tableNO = "20"};
 
            
-            return RedirectToAction("Index","Home",MakeOrder(test));
+            return RedirectToAction("Index","Home",MakeOrder());
         }
+
+      
+
+        
     }
 }
