@@ -10,9 +10,9 @@ namespace WebApplication1.Models
         {
         }
 
-        [JsonProperty("itemID")] public string itemID { get; set; }
+        [JsonProperty("itemID")] public int itemID { get; set; }
 
-        [JsonProperty("tableNO")] public String tableNO { get; set; }
+        [JsonProperty("tableNO")] public int tableNO { get; set; }
         
         [JsonProperty("quantity")] public int quantity { get; set; }
         

@@ -1,5 +1,5 @@
 ﻿@using WebApplication1.Models
-@model IEnumerable<WebApplication1.Models.Item>
+@model IEnumerable<WebApplication1.Models.ItemOrder>
 
 
 @{
@@ -41,11 +41,10 @@
         @foreach (var x in Model)
         {
             <tr>
-                <td>@x.ItemName</td>
-                <td>@x.Description</td>
-                <td>dkk @x.Price</td>
+                <td>@x.itemID</td>
+                <td>dkk @x.price</td>
                 <td>
-                    <button id="btn_delete" class="label label-primary" data-slno="@x.ItemName" onclick="location.href='@Url.Action("Remove", "AddToCart", x)'">
+                    <button id="btn_delete" class="label label-primary" data-slno="@x.itemID" onclick="location.href='@Url.Action("Remove", "AddToCart", x)'">
                         <img src="~/Icons/delete.png" height="30" width="30" alt=""/>
                     </button>
                 </td>
@@ -62,7 +61,7 @@
 
         @foreach (var x in Model)
         {
-            sum = Convert.ToDecimal(x.Price) + sum;
+            sum = Convert.ToDecimal(x.price) + sum;
         }
         <tfoot>
         <tr>
@@ -85,9 +84,12 @@
         <span class="addToOrder"></span> Add To Order
     </a>
     
-    <a type="submit" id="btn_continue" onclick="href='@Url.Action("order", "AddToCart")'" class="btn btn-info btn-lg">
-        <span class="continueChoosing"></span> Order
-    </a>
-
+    <form action="@Url.Action("addToCart", "AddToCart")" method="post">
+        <button type="submit" id="btn_continue" onclick="" class="btn btn-info btn-lg">
+            <span class="continueChoosing"></span> Order
+        </button>
+        
+       
+    </form>
         
 </div>

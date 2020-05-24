@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.Web.Services3.Referral;
 using Newtonsoft.Json;
 using NuGet;
 using WebApplication1.Models;
@@ -18,20 +19,23 @@ namespace WebApplication1.Controllers
         
         [HttpPost]
         [ActionName("order")]
-     
-        public ActionResult SubmitOrder(ItemOrder itemOrder)
+        public async Task<ActionResult> SubmitOrder(List<ItemOrder> orderItems)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
-                ItemOrder test = new ItemOrder{itemID = "1",price = 100,quantity = 4,tableNO = "2"};
-                var jsonString = JsonConvert.SerializeObject(test);
+                var jsonString = JsonConvert.SerializeObject(orderItems);
+                Console.WriteLine("jsonString: " + jsonString);
                 var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                client.PostAsync("ordereditems", content);
-                Console.WriteLine("We got here"+ content);
+                var response = await client.PostAsync("ordereditems", content);
+                Console.WriteLine("RESPONSE success: " + response.IsSuccessStatusCode);
             }
-            return RedirectToAction("order");        
+
+            return RedirectToAction("Index", "Home");
         }
+        
+        [HttpGet]
+        [ActionName("order")]
         public ActionResult order(ItemOrder itemOrder)
         {
             Console.WriteLine(itemOrder.itemID);

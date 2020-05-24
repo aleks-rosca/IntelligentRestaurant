@@ -8,7 +8,7 @@ namespace WebApplication1.Models
         public Item()
         {
         }
-        [JsonProperty("itemId")] public string Id { get; set; }
+        [JsonProperty("itemId")] public int Id { get; set; }
 
         [JsonProperty("itemName")] public string ItemName { get; set; }
 
