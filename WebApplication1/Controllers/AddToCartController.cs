@@ -83,6 +83,8 @@ namespace WebApplication1.Controllers
             Session["count"] = Convert.ToInt32(Session["count"]) - 1;
             return RedirectToAction("Myorder", "AddToCart");
         }
+        
+        //jhbsjhsb
 
         public void emptyCart()
         {
