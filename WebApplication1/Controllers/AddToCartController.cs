@@ -84,8 +84,10 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Myorder", "AddToCart");
         }
 
-      
+        public void emptyCart()
+        {
+            Session.Clear();
+        }
 
-        
     }
 }
