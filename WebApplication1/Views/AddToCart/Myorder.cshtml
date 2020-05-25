@@ -25,8 +25,8 @@
         <thead>
         <tr>
 
-            <th>Item Name</th>
-            <th>Item Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
             <th>Price</th>
             <th>Remove</th>
 
@@ -40,7 +40,7 @@
         {
             <tr>
                 <td>@x.itemName</td>
-                <td>@x.itemID</td>
+                <td>@x.quantity</td>
                 <td>dkk @x.price</td>
                 <td>
                     <button id="btn_delete" class="label label-primary" data-slno="@x.itemID" onclick="location.href='@Url.Action("Remove", "AddToCart", x)'">
@@ -54,12 +54,14 @@
         </tbody>
         @{
             decimal sum = 0;
+         
         }
 
 
         @foreach (var x in Model)
         {
-            sum = Convert.ToDecimal(x.price) + sum;
+
+            sum = (Convert.ToDecimal(x.price) * Convert.ToDecimal(x.quantity) + sum);
         }
         <tfoot>
         <tr>
