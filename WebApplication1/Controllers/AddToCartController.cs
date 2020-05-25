@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class AddToCartController : Controller
     {
-        // private readonly string baseUrl = "http://localhost:8080/api/";
-       // private List<ItemOrder> io = new List<ItemOrder>();
+
         public ActionResult Add(Item newItem)
         {
             if (Session["out"] == null)
@@ -57,8 +52,7 @@ namespace WebApplication1.Controllers
                         };
                         (Session["out"] as List<ItemOrder>)?.Add(itemOrder);
                     }
-
-
+                    
                     ViewBag.cart = ((List<ItemOrder>) Session["out"]).Count;
                     Session["count"] = Convert.ToInt32(Session["count"]) + 1;
                 }
@@ -67,11 +61,6 @@ namespace WebApplication1.Controllers
                 Console.WriteLine(e);
                 throw e;
             }
-
-
-
-
-          
             
             return RedirectToAction("Index", "Home");
         }
@@ -80,16 +69,7 @@ namespace WebApplication1.Controllers
         {
             return await new SubmitOrderController().SubmitOrder(((List<ItemOrder>) Session["out"]));
         }
-
-        private int isExist(Item item)
-        {
-            var cart = (List<Item>) Session["cart"];
-            for (var i = 0; i < cart.Count; i++)
-                if (cart[i].ItemName.Equals(item))
-                    return i;
-            return -1;
-        }
-
+        
         public ActionResult Myorder()
         {
             return View((List<ItemOrder>) Session["out"]);
