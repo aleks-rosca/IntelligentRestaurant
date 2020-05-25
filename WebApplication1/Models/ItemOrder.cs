@@ -9,7 +9,7 @@ namespace WebApplication1.Models
         public ItemOrder()
         {
         }
-
+            public string itemName { get; set; }
         [JsonProperty("itemID")] public int itemID { get; set; }
 
         [JsonProperty("tableNO")] public int tableNO { get; set; }
