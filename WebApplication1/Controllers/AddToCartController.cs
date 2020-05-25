@@ -13,7 +13,9 @@ namespace WebApplication1.Controllers
         {
             if (Session["out"] == null)
             {
+                
                 Session["out"] = new List<ItemOrder>();
+            
             }
 
             var alreadyOrderedItemIndex = 0;
@@ -61,7 +63,7 @@ namespace WebApplication1.Controllers
                 Console.WriteLine(e);
                 throw e;
             }
-            
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -84,9 +86,11 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Myorder", "AddToCart");
         }
 
-        public void emptyCart()
+        public ActionResult emptyCart()
         {
-            Session.Clear();
+            Session.RemoveAll();
+            
+            return RedirectToAction("Index", "Home");
         }
 
     }

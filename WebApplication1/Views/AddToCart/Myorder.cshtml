@@ -37,15 +37,10 @@
 
         <tbody>
 
-        @if(Session["count"] == null)
+
+        @foreach (var x in Model)
         {
-            <a href="@Url.Action("Index", "Home")" class="btn btn-info btn-lg"></a>
-        }
-        else
-        {
-            foreach (var x in Model)
-            {
-                <tr>
+            <tr>
                     <td>@x.itemName</td>
                     <td>@x.itemID</td>
                     <td>dkk @x.price</td>
@@ -56,9 +51,6 @@
                     </td>
                 </tr>
             }
-        }
-       
-
 
 
         </tbody>
@@ -67,10 +59,10 @@
         }
 
 
-        @foreach (var x in Model)
-        {
-            sum = Convert.ToDecimal(x.price) + sum;
-        }
+         @foreach (var x in Model)
+         {
+             sum = Convert.ToDecimal(x.price) + sum;
+         }
         <tfoot>
         <tr>
             <td></td>
@@ -87,13 +79,22 @@
         </tfoot>
 
     </table>
-
-    <form action="@Url.Action("addToCart", "AddToCart")" method="post">
-        <button type="submit" id="btn_continue" onclick="" class="btn btn-info btn-lg">
-            <span class="continueChoosing"></span> Order
-        </button>
-
-
-    </form>
-
+    <td>
+        <form action="@Url.Action("addToCart", "AddToCart")" method="post">
+            <button type="submit" id="btn_continue" onclick="" class="btn btn-info btn-lg">
+                <span class="continueChoosing"></span> Order
+            </button>
+        
+       
+        </form>
+    </td>
+      <td>
+        <form action="@Url.Action("emptyCart", "AddToCart")" method="post">
+            <button type="submit" id="btn_continue" onclick="" class="btn btn-info btn-lg">
+                <span class="continueChoosing"></span> Pay
+            </button>
+            
+           
+        </form>
+            </td>
 </div>
