@@ -3,41 +3,31 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Castle.Core.Internal;
-using CMS.SalesForce;
-using Microsoft.Web.Services3.Referral;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class AddToCartController : Controller
     {
-
         public ActionResult Add(Item newItem)
         {
-            if (Session["out"] == null)
-            {
-                
-                Session["out"] = new List<ItemOrder>();
-            
-            }
+            if (Session["out"] == null) Session["out"] = new List<ItemOrder>();
 
             var alreadyOrderedItemIndex = 0;
-            bool alreadyHasItemType = false;
+            var alreadyHasItemType = false;
 
             try
             {
-                List<ItemOrder> currentOrders = Session["out"] as List<ItemOrder>;
+                var currentOrders = Session["out"] as List<ItemOrder>;
                 if (currentOrders != null)
                 {
-                    for (int i = 0; i < currentOrders.Count; i++)
-                    {
+                    for (var i = 0; i < currentOrders.Count; i++)
                         if (((List<ItemOrder>) Session["out"])[i].itemID == newItem.Id)
                         {
                             alreadyHasItemType = true;
                             alreadyOrderedItemIndex = i;
                             break;
                         }
-                    }
 
                     if (alreadyHasItemType)
                     {
@@ -50,9 +40,9 @@ namespace WebApplication1.Controllers
                         var itemOrder = new ItemOrder
                         {
                             itemName = newItem.ItemName,
-                            itemID = newItem.Id, 
-                            price = newItem.Price , 
-                            quantity = 1, 
+                            itemID = newItem.Id,
+                            price = newItem.Price,
+                            quantity = 1,
                             tableNO = 189
                         };
                         (Session["out"] as List<ItemOrder>)?.Add(itemOrder);
@@ -61,8 +51,9 @@ namespace WebApplication1.Controllers
                     ViewBag.cart = ((List<ItemOrder>) Session["out"]).Count;
                     Session["count"] = Convert.ToInt32(Session["count"]) + 1;
                 }
-
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine(e);
                 throw e;
             }
@@ -72,16 +63,13 @@ namespace WebApplication1.Controllers
 
         public async Task<ActionResult> AddToCart()
         {
-            return await new SubmitOrderController().SubmitOrder(((List<ItemOrder>) Session["out"]));
+            return await new SubmitOrderController().SubmitOrder((List<ItemOrder>) Session["out"]);
         }
-        
+
         public ActionResult Myorder()
         {
-            if (Session.IsNullOrEmpty())
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            
+            if (Session.IsNullOrEmpty()) return RedirectToAction("Index", "Home");
+
             return View((List<ItemOrder>) Session["out"]);
         }
 
@@ -97,9 +85,8 @@ namespace WebApplication1.Controllers
         public ActionResult emptyCart()
         {
             Session.RemoveAll();
-            
+
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

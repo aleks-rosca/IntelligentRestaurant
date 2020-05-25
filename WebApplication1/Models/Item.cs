@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace WebApplication1.Models
 {
     public class Item
     {
-        public Item()
-        {
-        }
         [JsonProperty("itemId")] public int Id { get; set; }
 
         [JsonProperty("itemName")] public string ItemName { get; set; }
@@ -17,9 +13,5 @@ namespace WebApplication1.Models
         [JsonProperty("itemPrice")] public decimal Price { get; set; }
 
         [JsonProperty("itemType")] public string Type { get; set; }
-
-       
     }
 }
-    
-    
