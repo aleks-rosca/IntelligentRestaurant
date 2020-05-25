@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Castle.Core.Internal;
+using CMS.SalesForce;
+using Microsoft.Web.Services3.Referral;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -74,6 +77,11 @@ namespace WebApplication1.Controllers
         
         public ActionResult Myorder()
         {
+            if (Session.IsNullOrEmpty())
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
             return View((List<ItemOrder>) Session["out"]);
         }
 
