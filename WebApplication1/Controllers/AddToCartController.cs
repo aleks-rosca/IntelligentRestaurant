@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
                         };
                         (Session["out"] as List<ItemOrder>)?.Add(itemOrder);
                     }
-                    
+
                     ViewBag.cart = ((List<ItemOrder>) Session["out"]).Count;
                     Session["count"] = Convert.ToInt32(Session["count"]) + 1;
                 }

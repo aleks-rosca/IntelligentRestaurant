@@ -37,21 +37,28 @@
 
         <tbody>
 
-
-        @foreach (var x in Model)
+        @if(Session["count"].Equals(null))
         {
-            <tr>
-                <td>@x.itemName</td>
-                <td>@x.itemID</td>
-                <td>dkk @x.price</td>
-                <td>
-                    <button id="btn_delete" class="label label-primary" data-slno="@x.itemID" onclick="location.href='@Url.Action("Remove", "AddToCart", x)'">
-                        <img src="~/Icons/delete.png" height="30" width="30" alt=""/>
-                    </button>
-                </td>
-            </tr>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-info btn-lg"></a>
         }
-        
+        else
+        {
+            foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.itemName</td>
+                    <td>@x.itemID</td>
+                    <td>dkk @x.price</td>
+                    <td>
+                        <button id="btn_delete" class="label label-primary" data-slno="@x.itemID" onclick="location.href='@Url.Action("Remove", "AddToCart", x)'">
+                            <img src="~/Icons/delete.png" height="30" width="30" alt=""/>
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+       
+
 
 
         </tbody>
@@ -80,13 +87,13 @@
         </tfoot>
 
     </table>
-    
+
     <form action="@Url.Action("addToCart", "AddToCart")" method="post">
         <button type="submit" id="btn_continue" onclick="" class="btn btn-info btn-lg">
             <span class="continueChoosing"></span> Order
         </button>
-        
-       
+
+
     </form>
-        
+
 </div>
