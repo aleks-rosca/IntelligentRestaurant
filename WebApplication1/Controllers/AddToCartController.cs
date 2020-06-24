@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Castle.Core.Internal;
+using CMS.Base;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -46,9 +48,13 @@ namespace WebApplication1.Controllers
                             tableNO = 189
                         };
                         (Session["out"] as List<ItemOrder>)?.Add(itemOrder);
+                        var c = itemOrder.quantity.ToInteger(Int32.MaxValue);
+                        
+
                     }
 
                     ViewBag.cart = ((List<ItemOrder>) Session["out"]).Count;
+                    
                     Session["count"] = Convert.ToInt32(Session["count"]) + 1;
                 }
             }
@@ -76,9 +82,17 @@ namespace WebApplication1.Controllers
         public ActionResult Remove(ItemOrder item)
         {
             var li = (List<ItemOrder>) Session["out"];
-            li.RemoveAll(x => x.itemID == item.itemID);
-            Session["out"] = li;
-            Session["count"] = Convert.ToInt32(Session["count"]) - 1;
+            
+                li.RemoveAll(x => x.itemID == item.itemID);
+                var c = item.quantity;
+                if (li.Count == 0)
+                {
+                    Session["count"] = 0;
+                }
+                Console.WriteLine(c);
+                Console.WriteLine(li.Count);
+                Session["out"] = li;
+            Session["count"] = li.Count;
             return RedirectToAction("Myorder", "AddToCart");
         }
 
