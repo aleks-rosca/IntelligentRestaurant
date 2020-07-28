@@ -26,8 +26,10 @@ namespace WebApplication1.Controllers
                 var response = await client.PostAsync("ordereditems", content);
                 Console.WriteLine("RESPONSE success: " + response.IsSuccessStatusCode);
             }
+            
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("emptyCart", "AddToCart");
+            
         }
 
         [HttpGet]
@@ -35,6 +37,7 @@ namespace WebApplication1.Controllers
         public ActionResult order(ItemOrder itemOrder)
         {
             Console.WriteLine(itemOrder.itemID);
+            
             return View();
         }
     }

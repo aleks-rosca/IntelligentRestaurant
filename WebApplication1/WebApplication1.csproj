@@ -647,6 +647,7 @@
         <Compile Include="App_Start\RouteConfig.cs" />
         <Compile Include="Controllers\AddToCartController.cs" />
         <Compile Include="Controllers\HomeController.cs" />
+        <Compile Include="Controllers\OrderedController.cs" />
         <Compile Include="Controllers\SubmitOrderController.cs" />
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
@@ -695,6 +696,7 @@
         <Content Include="Views\Home\SoftDrink.cshtml" />
         <Content Include="Views\Home\Soup.cshtml" />
         <Content Include="Views\Home\StrongDrink.cshtml" />
+        <Content Include="Views\Ordered\getOrderedItems.cshtml" />
         <Content Include="Views\SubmitOrder\order.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">

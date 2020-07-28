@@ -27,12 +27,14 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Drinks", "Drinks", "Home")</li>
                 <li>@Html.ActionLink("Food", "Food", "Home")</li>
+                
                 <il class="nav navbar-nav">
                     <li class="active">
                     <a href="@Url.Action("Myorder", "AddToCart")" class="btn btn-info btn-lg">
                         <span class="glyphicon glyphicon-shopping-cart" style="color:green"></span>Cart <span class="badge">@Session["count"]</span>
                     </a>
                 </il>
+                <li>@Html.ActionLink("My Order", "getOrderedItems", "Ordered")</li>
             </ul>
         </div>
     </div>

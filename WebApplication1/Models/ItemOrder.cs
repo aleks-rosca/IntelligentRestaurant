@@ -5,9 +5,9 @@ namespace WebApplication1.Models
     public class ItemOrder
 
     {
-        public string itemName { get; set; }
         [JsonProperty("itemID")] public int itemID { get; set; }
-
+        [JsonProperty("itemName")]public string itemName { get; set; }
+        
         [JsonProperty("tableNO")] public int tableNO { get; set; }
 
         [JsonProperty("quantity")] public int quantity { get; set; }

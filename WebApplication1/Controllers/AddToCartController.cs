@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Castle.Core.Internal;
@@ -33,19 +32,17 @@ namespace WebApplication1.Controllers
 
                     if (alreadyHasItemType)
                     {
-                        // already have item(s) of this type
                         ((List<ItemOrder>) Session["out"])[alreadyOrderedItemIndex].quantity++;
                     }
                     else
                     {
-                        // first item of this type
                         var itemOrder = new ItemOrder
                         {
                             itemName = newItem.ItemName,
                             itemID = newItem.Id,
                             price = newItem.Price,
                             quantity = 1,
-                            tableNO = 189
+                            tableNO = 14
                         };
                         (Session["out"] as List<ItemOrder>)?.Add(itemOrder);
                         var c = itemOrder.quantity.ToInteger(Int32.MaxValue);
@@ -69,7 +66,9 @@ namespace WebApplication1.Controllers
 
         public async Task<ActionResult> AddToCart()
         {
+            
             return await new SubmitOrderController().SubmitOrder((List<ItemOrder>) Session["out"]);
+
         }
 
         public ActionResult Myorder()
@@ -85,14 +84,21 @@ namespace WebApplication1.Controllers
             
                 li.RemoveAll(x => x.itemID == item.itemID);
                 var c = item.quantity;
+                Console.WriteLine(c);
+                Console.WriteLine(li.Count + "--");
+                Session["out"] = li;
                 if (li.Count == 0)
                 {
                     Session["count"] = 0;
                 }
-                Console.WriteLine(c);
-                Console.WriteLine(li.Count);
-                Session["out"] = li;
-            Session["count"] = li.Count;
+                else if (c > 1)
+                {
+                    Session["count"] = li.Count + 1;
+                }
+                else
+                {
+                    Session["count"] = li.Count;
+                }
             return RedirectToAction("Myorder", "AddToCart");
         }
 
