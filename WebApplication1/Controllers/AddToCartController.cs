@@ -41,8 +41,10 @@ namespace WebApplication1.Controllers
                             itemName = newItem.ItemName,
                             itemID = newItem.Id,
                             price = newItem.Price,
-                            quantity = 1,
-                            tableNO = 14
+                            quantity = 1
+                            
+                            
+
                         };
                         (Session["out"] as List<ItemOrder>)?.Add(itemOrder);
                         var c = itemOrder.quantity.ToInteger(Int32.MaxValue);

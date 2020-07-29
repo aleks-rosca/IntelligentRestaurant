@@ -187,5 +187,22 @@ namespace WebApplication1.Controllers
                 return View(items);
             }
         }
+
+        public ActionResult getHelp()
+        {
+            var tableNo = new ItemOrder().tableNO;
+            using (var client = new HttpClient())
+            {
+                
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var responseTask = client.GetAsync("help/needHelp/" + tableNo);
+                responseTask.Wait();
+            }
+
+            Console.WriteLine("here" + tableNo);
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -7,8 +7,8 @@ namespace WebApplication1.Models
     {
         [JsonProperty("itemID")] public int itemID { get; set; }
         [JsonProperty("itemName")]public string itemName { get; set; }
-        
-        [JsonProperty("tableNO")] public int tableNO { get; set; }
+
+        [JsonProperty("tableNO")] public int tableNO = 1;
 
         [JsonProperty("quantity")] public int quantity { get; set; }
 

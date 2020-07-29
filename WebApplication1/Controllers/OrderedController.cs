@@ -17,12 +17,14 @@ namespace WebApplication1.Controllers
         {
             
             IEnumerable<ItemOrder> orders = new List<ItemOrder>();
+            var ord = new ItemOrder();
 
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
+                var tableNo = ord.tableNO;
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var responseTask = client.GetAsync("ordereditems/14");
+                var responseTask = client.GetAsync("ordereditems/" + tableNo);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
