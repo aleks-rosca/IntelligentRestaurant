@@ -54,14 +54,13 @@
         </tbody>
         @{
             decimal sum = 0;
-         
+
         }
 
 
         @foreach (var x in Model)
         {
-
-            sum = (Convert.ToDecimal(x.price) * Convert.ToDecimal(x.quantity) + sum);
+            sum = Convert.ToDecimal(x.price) * Convert.ToDecimal(x.quantity) + sum;
         }
         <tfoot>
         <tr>

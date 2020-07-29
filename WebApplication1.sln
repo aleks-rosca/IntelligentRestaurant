@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustumerClient", "CustumerClient\CustumerClient.csproj", "{E0E7D188-5E59-43DF-9375-5E7815C28D1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WepApplication1", "WepApplication1\WepApplication1.csproj", "{E0E7D188-5E59-43DF-9375-5E7815C28D1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
