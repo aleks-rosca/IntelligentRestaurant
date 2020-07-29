@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebApplication1.Models.ItemOrder>
+
+
+<title>Are you sure?</title>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+
+        <th>Item Name</th>
+        <th>Tablen Number</th>
+        <th>Quantity</th>
+        <th>Price</th>
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    @foreach (var it in Model)
+    {
+        <td>@it.itemID</td>
+        <td>@it.tableNO</td>
+        <td> @it.quantity</td>
+        <td>dkk @it.price</td>
+
+        <button id="btn_yes" class="label label-primary" data-slno="@it.itemID" onclick="location.href='@Url.Action("order", "SubmitOrder", it)'"/>
+    }
+</table>

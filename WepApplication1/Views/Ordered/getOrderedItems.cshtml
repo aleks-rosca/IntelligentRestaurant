@@ -1,0 +1,53 @@
+@model IEnumerable<WebApplication1.Models.ItemOrder>
+
+@{
+    ViewBag.Title = "MyOrder";
+}
+
+<div class="jumbotron">
+    <h2> My Order </h2>
+</div>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.itemName)
+
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+
+
+    </tr>
+
+    @foreach (var ordered in Model)
+    {
+        <tr>
+            <td>
+
+                @Html.DisplayFor(modelOrder => ordered.itemName)
+            </td>
+
+            <td>
+
+                @Html.DisplayFor(modelOrder => ordered.quantity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelOrder => ordered.price)
+
+            </td>
+
+
+        </tr>
+    }
+
+</table>

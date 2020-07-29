@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<div class="four-images">
+    <div class="cell">
+        <a href="@Url.Action("Drinks", "Home")">
+            <img src="~/Pictures/Drinks.jpg" alt="Drinks" style="width:100%"/>
+            <div class="text"> Drinks </div>
+        </a>
+    </div>
+    <div class="cell">
+        <a href="@Url.Action("Food", "Home")">
+            <img src="~/Pictures/Food.jpg" alt="Food" style="width:100%"/>
+            <div class="text"> Food </div>
+        </a>
+    </div>
+</div>
+
+<div class="allButtons">
+    <div class="button">
+        <button type="button" onclick="location.href='@Url.Action("getHelp", "Home")'"> Call for Help </button>
+    </div>
+    <p style="text-align:center; color:red; font-size: medium">For payment or help, please press the "Help" button</p>
+</div>
+
+<style>
+.four-images{
+column-count: 2;
+}
+.button{
+display: flex;
+justify-content: center;
+padding: 5px;
+border: none;
+background-color: inherit;
+font-size: 20px;
+cursor:pointer;
+}
+.button:hover{
+color: deepskyblue;
+}
+ /* Picture alignment */
+.cell{
+    width:100%;
+        height: 70%;
+        display:inline-block;
+        position:relative;
+        transition:.3s;
+        padding:2px;
+        cursor: pointer;
+        border-radius: 5px;
+        column-gap: 0;
+        overflow: hidden;
+float: left
+          }
+  /* Text alignment */
+ .cell .text{
+        position: absolute;
+        z-index: 999;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 40%;
+        text-align: center;
+        width: 60%; 
+        font-size:50px;
+        font-weight:bold;
+        color:white;
+        filter: brightness(100%);   
+    }
+
+  /*  Blur timing  */
+  .cell img{
+    width:100%;
+    height:100%;
+    transition:.5s;
+    border-radius:4px;
+  }
+  /*  Blur intensity  */
+  .cell:hover img{
+    filter:blur(5px) brightness(60%) ;
+    box-shadow:0 0 16px white;
+  }
+   /* Text visibility, without affecting the picture and hyperlink */
+  .cell a :not(img){
+    position:absolute;
+    z-index:1;
+    top:30%;
+    width:100%;
+    text-align:center;
+    color:#fff;
+    opacity:0;
+    transition:.3s;
+  }
+   /* Text appearance */
+  .cell:hover :not(img){
+    opacity:1;
+  }
+</style>
