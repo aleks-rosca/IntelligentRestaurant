@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace WebApplication1.Models
 {
@@ -6,12 +7,15 @@ namespace WebApplication1.Models
 
     {
         [JsonProperty("itemID")] public int itemID { get; set; }
-        [JsonProperty("itemName")]public string itemName { get; set; }
 
-        [JsonProperty("tableNO")] public int tableNO = 1;
-
-        [JsonProperty("quantity")] public int quantity { get; set; }
-
-        [JsonProperty("price")] public decimal price { get; set; }
+        [Display(Name = "Item Name"), JsonProperty("itemName")] 
+        public string itemName { get; set; }
+        
+        [JsonProperty("tableNO")] public int tableNO = 2;
+        
+        [Display(Name = "Quantity"), JsonProperty("quantity")] 
+        public int quantity { get; set; }
+        [Display(Name = "Price"), JsonProperty("price")] 
+        public decimal price { get; set; }
     }
 }
